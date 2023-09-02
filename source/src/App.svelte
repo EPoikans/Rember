@@ -21,6 +21,9 @@
 	});
 	function makeNewReminder() {
 		const name = (document.getElementById('reminderName') as HTMLInputElement).value;
+		if(name.length >= 90) {
+			name.substring(0, 90);
+		}
 		const now = new Date();
 		const endDate = new Date((document.getElementById('reminderDate') as HTMLInputElement).value);
 		const dates: Date[] = [];

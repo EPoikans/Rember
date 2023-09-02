@@ -27,14 +27,23 @@ class ReminderStorage {
 		const serialized = store.get('reminders');
 		if (serialized) {
 			this.reminders = serialized.map((reminder) => {
-				return {
-					name: reminder.name,
-					dates: reminder.dates.map((date) => new Date(date))
-				};
+				console.log(reminder.name.length);
+				if((reminder.name).length >= 90){
+					return {
+						name: (reminder.name).substring(0,90),
+						dates: reminder.dates.map((date) => new Date(date))
+					}
+				} else {
+					return {
+						name: reminder.name,
+						dates: reminder.dates.map((date) => new Date(date))
+					};
+				}
 			});
 		} else {
 			this.reminders = [];
 		}
+		this.saveReminders();
 		return this.reminders;
 	}
 

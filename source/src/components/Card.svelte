@@ -25,29 +25,43 @@
 	function deleteReminder() {
 		console.log('DELETIUM REMINDIUM');
 		window.electron.removeReminder(data.name);
+		delCheck.checked = false;
 	}
 </script>
 
 <div class="card">
 	<h2>{data.name}</h2>
-	<p>Next reminder: {nextReminderDate.toLocaleDateString()}</p>
-	{#if dismissable }
-		<div>
-			<button on:click={dismissReminder} type="button">Dismiss</button>
-		</div>
-	{/if}
-	<button bind:this={delBtn} on:click={deleteReminder} value="1" disabled type="button" id="delBtn">Delete</button>
-	<input bind:this={delCheck} on:click={updateDelBtn} type="checkbox" id="delCheck">
+	<div class="carddata">
+		<p>Next reminder: {nextReminderDate.toLocaleDateString()}</p>
+		{#if dismissable }
+			<div>
+				<button on:click={dismissReminder} type="button">Dismiss</button>
+			</div>
+		{/if}
+		<button bind:this={delBtn} on:click={deleteReminder} value="1" disabled type="button" id="delBtn">Delete</button>
+		<input bind:this={delCheck} on:click={updateDelBtn} type="checkbox" id="delCheck">
+	</div>
 </div>
 
 <style>
 	div.card {
 		border: 1px solid black;
 		border-radius: 5px;
-		padding: 5px;
-		margin: 5px;
+		padding: 10px;
+		margin: 10px;
 		box-shadow: 3px 3px 3px 3px #888888;
 		transition: 0.5s;
+		width: 210px;
+		height: 400px;
+	}
+	div.card h2 {
+		margin-bottom: 20%;
+		height: 50%;
+		align-self: center;
+		overflow-wrap: break-word;
+	}
+	div.carddata {
+		height:50%;
 	}
 	div.card:hover {
 		box-shadow: 5px 5px 3px 3px #888888;
