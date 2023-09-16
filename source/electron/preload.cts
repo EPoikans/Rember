@@ -10,15 +10,15 @@ const exposee: ExposedCtx = {
     addReminder: (reminder) => {
 		ipcRenderer.send('addReminder', reminder);
 	},
-    removeReminder: (reminderName) => {
-		ipcRenderer.send('removeReminder', reminderName);
+    removeReminder: (reminderId) => {
+		ipcRenderer.send('removeReminder', reminderId);
 	},
     getReminders: () => {
 		return ipcRenderer.sendSync('getReminders');
 	},
-    dismissReminder: (reminderName) => {
-        ipcRenderer.send('dismissReminder', reminderName);
-		console.log('dismissed reminder', reminderName);
+    dismissReminder: (reminderId) => {
+        ipcRenderer.send('dismissReminder', reminderId);
+		console.log('dismissed reminder', reminderId);
     },
 	onUpdate: (callback) => {
 		ipcRenderer.on('update', callback);

@@ -101,7 +101,7 @@ export function Rember(app: Electron.App) {
 	});
 
 	const { ipcMain } = require('electron');
-	const { reminderStorage } = require('./reminders.cjs');
+	const { reminderStorage } = require('./reminderStorage.cjs');
 
 	ipcMain.on('dismissReminder', (event, reminderName) => {
 		let mainWindow = getMainWindow();
